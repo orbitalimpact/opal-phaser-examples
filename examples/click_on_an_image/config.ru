@@ -16,7 +16,7 @@ get '/' do
     <!doctype html>
     <html>
       <head>
-        <title>Load Image</title>
+        <title>Click on an Image</title>
         </style>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/phaser/2.2.1/phaser.min.js"></script>
         <script src="/assets/click_on_an_image.js"></script>
