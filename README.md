@@ -2,12 +2,12 @@
 
 * Phaser: https://github.com/photonstorm/phaser
 * Phaser Examples: https://github.com/photonstorm/phaser-examples
-* Opal Phaser Wrapper: https://github.com/andreanastacio/opal-phaser
+* Opal Phaser Wrapper: https://github.com/orbitalimpact/opal-phaserjs
 
 ## Running
 
 ```
-$ git clone https://github.com/andreanastacio/opal-phaser
+$ https://github.com/orbitalimpact/opal-phaserjs
 $ git clone https://github.com/andreanastacio/opal-phaser-examples
 $ cd opal-phaser-examples
 $ bundle
