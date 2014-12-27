@@ -4,11 +4,11 @@ require 'opal-phaser'
 class LoadAnImage
   def initialize
     preload = proc do
-      @game.load.image('einsten', 'assets/pics/ra_einstein.png')
+      @game.load.image('einstein', 'assets/pics/ra_einstein.png')
     end
 
     create = proc do
-      @game.add.sprite(0, 0, 'einsten')
+      @game.add.sprite(0, 0, 'einstein')
     end
 
     state = `{ preload: preload, create: create }`
