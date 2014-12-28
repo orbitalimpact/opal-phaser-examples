@@ -7,7 +7,7 @@
 ## Running
 
 ```
-$ git clone https://github.com/orbitalimpact/opal-phaserjs
+$ git clone https://github.com/orbitalimpact/opal-phaser
 $ git clone https://github.com/andreanastacio/opal-phaser-examples
 $ cd opal-phaser-examples
 $ bundle
