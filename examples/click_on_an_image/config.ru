@@ -17,10 +17,14 @@ get '/' do
     <html>
       <head>
         <title>Click on an Image</title>
-        </style>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/phaser/2.2.1/phaser.min.js"></script>
         <script src="/assets/click_on_an_image.js"></script>
       </head>
+      <style>
+      body {
+      	background-color: gray;
+      }
+      </style>
       <body>
         <script>
           window.onload = function() {
