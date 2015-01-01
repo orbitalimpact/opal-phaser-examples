@@ -10,7 +10,6 @@ class ClickOnAnImage
             end
             
             state.create do |game|
-                @text = nil
                 @counter = 0
                 
                 listener = Proc.new do
