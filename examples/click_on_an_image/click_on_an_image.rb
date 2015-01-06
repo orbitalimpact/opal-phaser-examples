@@ -1,29 +1,58 @@
 require 'opal'
-require 'opal-phaser'
+require 'opal/phaser'
+
+class Counter
+  attr_reader :counter
+
+  def initialize
+    @count = 0
+  end
+
+  def add
+    @count += 1
+  end
+
+  def to_s
+    "You clicked #{@count} times"
+  end
+end
+
+module Entity
+  class Einstein
+    attr_reader :sprite_url, :sprite_key
+
+    def initialize
+      @sprite_url = 'assets/pics/ra_einstein.png'
+      @sprite_key = 'einstein'
+    end
+  end
+end
 
 class ClickOnAnImage
   def initialize
-    @counter = 0
+    @@einstein = Entity::Einstein.new
+    @@counter = Counter.new
+  end
 
-    listener = proc do
-      @counter += 1
-      @text.text = "You clicked #{@counter} times"
+  def run
+    Phaser::Game.new(800, 600) do |state|
+      state.preload do |game|
+        game.load.image(@@einstein.sprite_key, @@einstein.sprite_url)
+      end
+
+      state.create do |game|
+        image = game.add.sprite(game.world.centerX, game.world.centerY, @@einstein.sprite_key)
+        image.anchor.set(0.5)
+        text = game.add.text(250, 16, '', `{ fill: '#ffffff' }`)
+
+        listener = proc {
+          @@counter.add
+          text.text = @@counter.to_s
+        }
+
+        image.inputEnabled = true
+        image.events.onInputDown.add(listener, self)
+      end
     end
-
-    preload = proc do
-      @game.load.image('einsten', 'assets/pics/ra_einstein.png')
-    end
-
-    create = proc do
-      image = @game.add.sprite(@game.world.centerX, @game.world.centerY, 'einsten')
-      image.anchor.set(0.5)
-      image.inputEnabled = true
-      @text = @game.add.text(250, 16, '', `{ fill: '#ffffff' }`)
-
-      image.events.onInputDown.add(listener.to_n, self)
-    end
-
-    state = `{ preload: preload, create: create }`
-    @game = Opal::Phaser::Game.new(800, 600, Opal::Phaser::CANVAS, 'phaser-example', state )
   end
 end
