@@ -2,7 +2,7 @@
 
 * Phaser: https://github.com/photonstorm/phaser
 * Phaser Examples: https://github.com/photonstorm/phaser-examples
-* Opal Phaser Wrapper: https://github.com/orbitalimpact/opal-phaserjs
+* Opal Phaser Wrapper: https://github.com/orbitalimpact/opal-phaser
 
 ## Running
 
