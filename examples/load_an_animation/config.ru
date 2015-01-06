@@ -18,7 +18,7 @@ get '/' do
       <head>
         <title>Load an animation</title>
         </style>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/phaser/2.2.1/phaser.min.js"></script>
+        <script src="/dist/phaser.js"></script>
         <script src="/assets/load_an_animation.js"></script>
       </head>
       <body>
