@@ -32,8 +32,8 @@ class ClickOnAnImage
   attr_reader :einstein, :counter
   
   def initialize
-    @@einstein = Entity::Einstein.new
-    @@counter = Counter.new
+    @einstein = Entity::Einstein.new
+    @counter = Counter.new
   end
 
   def run
