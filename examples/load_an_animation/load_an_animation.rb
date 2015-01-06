@@ -9,7 +9,6 @@ class LoadAnAnimation
         end
 
         state.create do |game|
-            puts "in create"
             bot = game.add.sprite(200, 200, "bot")
 
             bot.animations.add("run")
