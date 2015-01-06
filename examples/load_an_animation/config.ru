@@ -17,7 +17,6 @@ get '/' do
     <html>
       <head>
         <title>Load an animation</title>
-        </style>
         <script src="/dist/phaser.js"></script>
         <script src="/assets/load_an_animation.js"></script>
       </head>
