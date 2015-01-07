@@ -2,7 +2,7 @@ require 'opal'
 require 'opal/phaser'
 
 class Counter
-  attr_reader :counter
+  attr_reader :count
 
   def initialize
     @count = 0
@@ -13,7 +13,7 @@ class Counter
   end
 
   def to_s
-    "You clicked #{@count} times"
+    "You clicked #{count} times"
   end
 end
 
@@ -29,30 +29,52 @@ module Entity
 end
 
 class ClickOnAnImage
+  attr_reader :einstein, :counter, :game
+
   def initialize
-    @@einstein = Entity::Einstein.new
-    @@counter = Counter.new
+    @einstein = Entity::Einstein.new
+    @counter = Counter.new
   end
 
   def run
-    Phaser::Game.new(800, 600) do |state|
-      state.preload do |game|
-        game.load.image(@@einstein.sprite_key, @@einstein.sprite_url)
-      end
+    preload_game
+    create_game
+    Phaser::Game.new(800, 600, Phaser::AUTO, '', state)
+  end
 
-      state.create do |game|
-        image = game.add.sprite(game.world.centerX, game.world.centerY, @@einstein.sprite_key)
-        image.anchor.set(0.5)
-        text = game.add.text(250, 16, '', `{ fill: '#ffffff' }`)
+  private
 
-        listener = proc {
-          @@counter.add
-          text.text = @@counter.to_s
-        }
-
-        image.inputEnabled = true
-        image.events.onInputDown.add(listener, self)
-      end
+  def preload_game
+    state.preload do |game|
+      @game = game
+      game.load.image(einstein.sprite_key, einstein.sprite_url)
     end
+  end
+
+  def create_game
+    state.create do
+      image.anchor.set(0.5)
+      image.inputEnabled = true
+      image.events.onInputDown.add(listener, self)
+    end
+  end
+
+  def image
+    @image ||= game.add.sprite(game.world.centerX, game.world.centerY, einstein.sprite_key)
+  end
+
+  def text
+    @text ||= game.add.text(250, 16, '', `{ fill: '#ffffff' }`)
+  end
+
+  def listener
+    proc {
+      counter.add
+      text.text = counter.to_s
+    }
+  end
+
+  def state
+    @state ||= Phaser::State.new
   end
 end
