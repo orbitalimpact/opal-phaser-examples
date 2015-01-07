@@ -11,6 +11,10 @@ class ClickOnAnImage
     Phaser::Game.new(800, 600, Phaser::AUTO, '', state)
   end
 
+  def self.run
+    new.run
+  end
+
   private
 
   def preload
