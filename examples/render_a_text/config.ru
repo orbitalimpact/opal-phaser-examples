@@ -17,6 +17,10 @@ get '/' do
     <html>
       <head>
         <title>RenderAText</title>
+        <style>
+        body {
+        	background-color: gray;
+        }
         </style>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/phaser/2.2.1/phaser.min.js"></script>
         <script src="/assets/render_a_text.js"></script>
