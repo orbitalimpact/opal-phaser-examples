@@ -7,16 +7,17 @@ class Einstein
     @game = game
   end
 
-  def place
+  def place(listener)
     sprite.anchor.set(0.5)
     sprite.inputEnabled = true
+    add_listener(listener)
   end
+
+  private
 
   def add_listener(listener)
     sprite.events.onInputDown.add(listener, self)
   end
-
-  private
 
   def centerX
     game.world.centerX

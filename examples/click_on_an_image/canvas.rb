@@ -15,10 +15,8 @@ class Canvas
   end
 
   def place_components
-    einstein.place
+    einstein.place(listener)
     counter.place
-
-    einstein.add_listener(listener)
   end
 
   private
