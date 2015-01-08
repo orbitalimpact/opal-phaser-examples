@@ -5,7 +5,7 @@ class LoadAnAnimation
     def initialize
         state = Phaser::State.new
         state.preload do |game|
-            game.load.atlasJSONHash("bot", "assets/sprites/running_bot.png", "assets/sprites/running_bot.json")
+            game.load.atlasJSONArray("bot", "assets/sprites/running_bot.png", "assets/sprites/running_bot.json")
         end
 
         state.create do |game|

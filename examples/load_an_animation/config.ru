@@ -22,7 +22,7 @@ get '/' do
         	background-color: gray;
         }
         </style>
-        <script src="/assets/dist/phaser.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/phaser/2.2.1/phaser.min.js"></script>
         <script src="/assets/load_an_animation.js"></script>
       </head>
       <body>
