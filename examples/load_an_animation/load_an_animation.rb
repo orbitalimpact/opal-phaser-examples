@@ -16,6 +16,6 @@ class LoadAnAnimation
             bot.animations.play("run", 15, true)
         end
 
-        @phaser = Phaser::Game.new(800, 600, Phaser::AUTO, '', state)
+        @phaser = Phaser::Game.new(800, 600, Phaser::AUTO, 'example', state)
     end
 end

@@ -33,6 +33,6 @@ class ImageFollowInput
             game.debug.inputInfo(32, 32)
         end
         
-        @phaser = Phaser::Game.new(800, 600, Phaser::AUTO, '', state)
+        @phaser = Phaser::Game.new(800, 600, Phaser::AUTO, 'example', state)
     end
 end

@@ -3,7 +3,7 @@ require 'opal-phaser'
 
 class ClickOnAnImage
     def initialize
-        @phaser = Phaser::Game.new(800, 600) do |state|
+        @phaser = Phaser::Game.new(800, 600, Phaser::AUTO, 'example') do |state|
             
             state.preload do |game|
                 game.load.image("einstein", "assets/pics/ra_einstein.png")
