@@ -2,23 +2,20 @@ require 'opal'
 require 'opal-phaser'
 
 class LoadAnAnimation
-  def initialize
-    preload = proc do
-      # On original examples uses atlasJSONHash
-      # but throw a exception:
-      # TypeError: undefined is not an object (evaluating 'g[i].frame.x')
-      @game.load.atlasJSONArray('bot',
-                                'assets/sprites/running_bot.png',
-                                'assets/sprites/running_bot.json')
-    end
+    def initialize
+        state = Phaser::State.new
+        state.preload do |game|
+            game.load.atlasJSONArray("bot", "assets/sprites/running_bot.png", "assets/sprites/running_bot.json")
+        end
 
-    create = proc do
-      bot = @game.add.sprite(200, 200, 'bot')
-      bot.animations.add('run')
-      bot.animations.play('run', 15, true)
-    end
+        state.create do |game|
+            bot = game.add.sprite(200, 200, "bot")
 
-    state = `{ preload: preload, create: create }`
-    @game = Opal::Phaser::Game.new(800, 600, Opal::Phaser::CANVAS, 'phaser-example', state)
-  end
+            bot.animations.add("run")
+
+            bot.animations.play("run", 15, true)
+        end
+
+        @phaser = Phaser::Game.new(800, 600, Phaser::AUTO, 'example', state)
+    end
 end
