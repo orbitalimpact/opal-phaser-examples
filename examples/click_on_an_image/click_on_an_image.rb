@@ -1,29 +1,36 @@
 require 'opal'
-require 'opal-phaser'
+require 'opal/phaser'
+require 'canvas'
 
 class ClickOnAnImage
-  def initialize
-    @counter = 0
+  attr_reader :canvas
 
-    listener = proc do
-      @counter += 1
-      @text.text = "You clicked #{@counter} times"
+  def run
+    preload
+    create_game
+    Phaser::Game.new(800, 600, Phaser::AUTO, '', state)
+  end
+
+  def self.run
+    new.run
+  end
+
+  private
+
+  def preload
+    state.preload do |game|
+      @canvas = Canvas.new(game)
+      canvas.load_background
     end
+  end
 
-    preload = proc do
-      @game.load.image('einsten', 'assets/pics/ra_einstein.png')
+  def create_game
+    state.create do
+      canvas.place_components
     end
+  end
 
-    create = proc do
-      image = @game.add.sprite(@game.world.centerX, @game.world.centerY, 'einsten')
-      image.anchor.set(0.5)
-      image.inputEnabled = true
-      @text = @game.add.text(250, 16, '', `{ fill: '#ffffff' }`)
-
-      image.events.onInputDown.add(listener.to_n, self)
-    end
-
-    state = `{ preload: preload, create: create }`
-    @game = Opal::Phaser::Game.new(800, 600, Opal::Phaser::CANVAS, 'phaser-example', state )
+  def state
+    @state ||= Phaser::State.new
   end
 end

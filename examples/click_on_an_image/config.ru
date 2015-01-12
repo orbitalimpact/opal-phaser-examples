@@ -24,7 +24,7 @@ get '/' do
       <body>
         <script>
           window.onload = function() {
-            Opal.ClickOnAnImage.$new()
+            Opal.ClickOnAnImage.$run()
           }
         </script>
       </body>
