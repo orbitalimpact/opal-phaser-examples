@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/orbitalimpact/opal-phaser.git
+  revision: edf74761f47dbcfcf1e13d01f38ca71e6f252ac4
+  specs:
+    opal-phaser (0.0.3)
+      opal (~> 0.6.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -9,8 +16,6 @@ GEM
     opal (0.6.3)
       source_map
       sprockets
-    opal-phaser (0.0.3)
-      opal (~> 0.6.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -37,6 +42,6 @@ PLATFORMS
 
 DEPENDENCIES
   opal
-  opal-phaser
+  opal-phaser!
   pry
   sinatra
