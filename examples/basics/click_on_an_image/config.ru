@@ -3,7 +3,7 @@ Bundler.require
 
 opal = Opal::Server.new {|s|
   s.append_path '.'
-  s.append_path '../assets'
+  s.append_path '../../assets'
   s.main = 'click_on_an_image'
 }
 
@@ -16,7 +16,7 @@ get '/' do
     <!doctype html>
     <html>
       <head>
-          <title>Click on an Image</title>
+          <title>Click On An Image</title>
           <script src="http://cdnjs.cloudflare.com/ajax/libs/phaser/2.2.1/phaser.min.js"></script>
           <script src="/assets/click_on_an_image.js"></script>
       </head>
@@ -47,7 +47,7 @@ get '/' do
       <body>
         <script>
           window.onload = function() {
-            Opal.ClickOnAnImage.$new()
+            Opal.Game.$new()
           }
         </script>
         <a href="https://github.com/orbitalimpact/opal-phaser-examples">
