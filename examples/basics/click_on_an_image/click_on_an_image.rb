@@ -20,7 +20,7 @@ class Image
       @text.text = "You clicked #{@counter} times!"
     end
     
-    @image = @game.add.sprite(@game.world.centerX, @game.world.centerY, @sprite_key)
+    @image = @game.add.sprite(@game.world.x_center, @game.world.y_center, @sprite_key)
     @image.anchor.set(0.5)
     
     @image.input_enabled = true
