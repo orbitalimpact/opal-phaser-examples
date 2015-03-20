@@ -3,7 +3,7 @@ Bundler.require
 
 opal = Opal::Server.new {|s|
   s.append_path '.'
-  s.append_path '../assets'
+  s.append_path '../../assets'
   s.main = 'main'
 }
 
