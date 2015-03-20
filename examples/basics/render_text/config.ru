@@ -3,8 +3,8 @@ Bundler.require
 
 opal = Opal::Server.new {|s|
   s.append_path '.'
-  s.append_path '../assets'
-  s.main = 'render_text'
+  s.append_path '../../assets'
+  s.main = 'main'
 }
 
 map '/assets' do
@@ -17,8 +17,8 @@ get '/' do
     <html>
       <head>
         <title>Render Text</title>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/phaser/2.2.1/phaser.min.js"></script>
-        <script src="/assets/render_text.js"></script>
+        <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.js"></script>
+        <script src="/assets/main.js"></script>
       </head>
       <style>
       body {
@@ -47,7 +47,7 @@ get '/' do
       <body>
         <script>
           window.onload = function() {
-            Opal.RenderText.$new()
+            Opal.Game.$new()
           }
         </script>
         <a href="https://github.com/orbitalimpact/opal-phaser-examples">

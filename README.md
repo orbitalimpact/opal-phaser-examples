@@ -8,7 +8,6 @@
 
 ```
 $ git clone https://github.com/orbitalimpact/opal-phaser-examples
-$ git clone https://github.com/orbitalimpact/opal-phaser-examples
 $ cd opal-phaser-examples
 $ bundle
 $ cd examples/some-example/
