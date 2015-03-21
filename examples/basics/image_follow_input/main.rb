@@ -26,7 +26,7 @@ class Logo
   end
   
   def update
-    if @game.physics.arcade.distance_to_pointer(@sprite, @game.input.activePointer) > 8
+    if @game.physics.arcade.distance_to_pointer(@sprite, @game.input.active_pointer) > 8
       @game.physics.arcade.move_to_pointer(@sprite, @speed_to_pointer)
     else
       @sprite.body.velocity.set(0)
