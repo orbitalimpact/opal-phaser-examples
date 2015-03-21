@@ -64,7 +64,7 @@ class Game
         @fish.green_jelly_fish.frame_name = "greenJellyfish0010"
       end
       
-      game.input.onDown.add(change_frame)
+      game.input.on_down.add(change_frame)
       
       @background.create
       @fish.create
