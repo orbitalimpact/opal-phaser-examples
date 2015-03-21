@@ -41,26 +41,18 @@ class Game
   
   def preload
     state.preload do |game|
-      initialize_entities(game)
-      entities_call :preload
+      @image = Image.new(game)
+      @image.preload
     end
   end
   
   def create_game
     state.create do
-      entities_call :create
+      @image.create
     end
   end
   
   def state
     @state ||= Phaser::State.new
-  end
-  
-  def initialize_entities(game)
-    @image = Image.new(game)
-  end
-  
-  def entities_call(method)
-    @image.send(method)
   end
 end
