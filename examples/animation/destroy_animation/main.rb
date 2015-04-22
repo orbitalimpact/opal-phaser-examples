@@ -31,15 +31,14 @@ class Sprite
   end
   
   def update
-    check_sprite = proc do |sprite|
-      if `sprite.x` > @game.width
+    @sprites.set_all("x", 10, true, true, 1)
+    
+    @sprites.children.each do |sprite|
+      if `sprite.x > self.game.$width()`
         @rip += 1
         @sprites.remove(sprite, true)
       end
     end
-    
-    @sprites.set_all("x", 10, true, true, 1)
-    @sprites.for_each(check_sprite, self, true)
   end
   
   def render
