@@ -26,7 +26,6 @@ class Sprite
     end
     
     @sprites = @game.add.group
-    pp @sprites
     @game.time.events.loop(50, create_sprite)
   end
   
