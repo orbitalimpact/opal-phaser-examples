@@ -45,7 +45,7 @@ class SeaCreatures
         frame_names.push("octopus00#{i}")
       end
   
-      break if i >= 24
+      break if i == 24
     end
     
     group.call_all("animations.add", "animations", "swim", frame_names, 30, true, false)

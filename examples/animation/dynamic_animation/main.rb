@@ -36,7 +36,7 @@ class Orb
       test = @game.add.sprite(200, 100 + (i * 22), "dynamic")
       test.animations.add("float")
       test.play("float", 20, true)
-      break if i >= 16
+      break if i == 16
     end
   end
 end
