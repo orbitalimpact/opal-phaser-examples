@@ -27,7 +27,7 @@ class Image
     
     @text = @game.add.text(250, 16, '', { fill: '#ffffff' })
     
-    @image.events.on_input_down.add(listener)
+    @image.events.on(:down, self, &listener)
   end
 end
 
