@@ -38,7 +38,7 @@ class Sprite
     @sprite.scale.set(4)
     @sprite.smoothed = false
     
-    @game.input.on_down.add(change_texture)
+    @game.input.on(:down, &change_texture)
   end
 end
 

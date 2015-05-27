@@ -52,15 +52,20 @@ class Game
   
   def create
     state.create do |game|
+      texture_counter = 0
+      
       change_to_mummy = proc do
-        @sprite.bot.load_texture(@sprite.mummy_key)
-        @sprite.bot.animations.add("walk")
-        @sprite.bot.animations.play("walk", 30, true)
+        if texture_counter == 0
+          @sprite.bot.load_texture(@sprite.mummy_key)
+          @sprite.bot.animations.add("walk")
+          @sprite.bot.animations.play("walk", 30, true)
+          texture_counter += 1
+        end
       end
       
       @sprite.create
       
-      game.input.on_down.add_once(change_to_mummy)
+      game.input.on(:down, &change_to_mummy)
     end
   end
   
