@@ -43,26 +43,22 @@ end
 
 class Game
   def initialize
-    preload
-    create
-    
-    Phaser::Game.new(width: 800, height: 600, renderer: Phaser::AUTO, parent: "example", state: state, transparent: false, antialias: true, physics: nil)
+    game  = Phaser::Game.new(width: 800, height: 600, renderer: Phaser::AUTO, parent: "example")
+    state = MainState.new(game)
+    game.state.add(:main, state, true)
   end
-  
-  def state
-    @state ||= Phaser::State.new
+end
+
+class MainState < Phaser::State
+  def initialize(game)
+    @orb = Orb.new(game)
   end
   
   def preload
-    state.preload do |game|
-      @orb = Orb.new(game)
-      @orb.preload
-    end
+    @orb.preload
   end
   
   def create
-    state.create do
-      @orb.create
-    end
+    @orb.create
   end
 end

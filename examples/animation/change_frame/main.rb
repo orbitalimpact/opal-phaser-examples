@@ -39,40 +39,36 @@ end
 
 class Game
   def initialize
-    preload
-    create
+    game  = Phaser::Game.new(width: 800, height: 600, renderer: Phaser::AUTO, parent: "example")
+    state = MainState.new(game)
+    game.state.add(:main, state, true)
+  end
+end
+
+class MainState < Phaser::State
+  def initialize(game)
+    @background = Background.new(game)
+    @fish       = GreenJellyFish.new(game)
     
-    Phaser::Game.new(width: 800, height: 600, renderer: Phaser::AUTO, parent: "example", state: state, transparent: false, antialias: true, physics: nil)
+    @objects    = [@background, @fish]
+    @game       = game
   end
   
-  def state
-    @state ||= Phaser::State.new
+  def call_state_method(state)
+    @objects.each { |object| object.send(state) }
   end
   
   def preload
-    state.preload do |game|
-      initialize_entities(game)
-      
-      @background.preload
-      @fish.preload
-    end
+    call_state_method :preload
   end
   
   def create
-    state.create do |game|
-      change_frame = proc do
-        @fish.green_jelly_fish.frame_name = "greenJellyfish0010"
-      end
-      
-      game.input.on(:down, &change_frame)
-      
-      @background.create
-      @fish.create
+    change_frame = proc do
+      @fish.green_jelly_fish.frame_name = "greenJellyfish0010"
     end
-  end
-  
-  def initialize_entities(game)
-    @background = Background.new(game)
-    @fish       = GreenJellyFish.new(game)
+    
+    @game.input.on(:down, &change_frame)
+    
+    call_state_method :create
   end
 end

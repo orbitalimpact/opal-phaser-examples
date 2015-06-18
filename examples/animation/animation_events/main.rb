@@ -68,49 +68,35 @@ end
 
 class Game
   def initialize
-    preload
-    create
-    update
-    
-    Phaser::Game.new(width: 800, height: 600, renderer: Phaser::CANVAS, parent: "example", state: state, transparent: false, antialias: true, physics: nil)
+    game  = Phaser::Game.new(width: 800, height: 600, renderer: Phaser::CANVAS, parent: "example")
+    state = MainState.new(game)
+    game.state.add(:main, state, true)
   end
-  
-  def preload
-    state.preload do |game|
-      initialize_entities(game)
-      
-      entities_call :preload
-    end
-  end
-  
-  def create
-    state.create do
-      entities_call :create
-    end
-  end
-  
-  def update
-    state.update do
-      if @mummy.anim.is_playing?
-        @background.background.x -= 1
-      end
-    end
-  end
-  
-  def state
-    @state ||= Phaser::State.new
-  end
-  
-  def initialize_entities(game)
+end
+
+class MainState < Phaser::State
+  def initialize(game)
     @background = Background.new(game)
     @mummy      = Mummy.new(game)
     
-    @entities = [@background, @mummy]
+    @objects   = [@background, @mummy]
   end
   
-  def entities_call(method)
-    @entities.each do |entity|
-      entity.send(method)
+  def call_state_method(state)
+    @objects.each { |object| object.send state }
+  end
+  
+  def preload
+    call_state_method :preload
+  end
+  
+  def create
+    call_state_method :create
+  end
+  
+  def update
+    if @mummy.anim.is_playing?
+      @background.background.x -= 1
     end
   end
 end

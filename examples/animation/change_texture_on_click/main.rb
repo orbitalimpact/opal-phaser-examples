@@ -31,47 +31,40 @@ end
 
 class Game
   def initialize
-    preload
-    create
-    render
-    
-    Phaser::Game.new(width: 800, height: 600, renderer: Phaser::CANVAS, parent: "example", state: state, transparent: false, antialias: true, physics: nil)
+    game  = Phaser::Game.new(width: 800, height: 600, renderer: Phaser::CANVAS, parent: "example")
+    state = MainState.new(game)
+    game.state.add(:main, state, true)
   end
-  
-  def state
-    @state ||= Phaser::State.new
+end
+
+class MainState < Phaser::State
+  def initialize(game)
+    @sprite = Sprite.new(game)
+    @game   = game
   end
   
   def preload
-    state.preload do |game|
-      @sprite = Sprite.new(game)
-      
-      @sprite.preload
-    end
+    @sprite.preload
   end
   
   def create
-    state.create do |game|
-      texture_counter = 0
-      
-      change_to_mummy = proc do
-        if texture_counter == 0
-          @sprite.bot.load_texture(@sprite.mummy_key)
-          @sprite.bot.animations.add("walk")
-          @sprite.bot.animations.play("walk", 30, true)
-          texture_counter += 1
-        end
+    texture_counter = 0
+    
+    change_to_mummy = proc do
+      if texture_counter == 0
+        @sprite.bot.load_texture(@sprite.mummy_key)
+        @sprite.bot.animations.add("walk")
+        @sprite.bot.animations.play("walk", 30, true)
+        texture_counter += 1
       end
-      
-      @sprite.create
-      
-      game.input.on(:down, &change_to_mummy)
     end
+    
+    @sprite.create
+    
+    @game.input.on(:down, &change_to_mummy)
   end
   
   def render
-    state.render do |game|
-      game.debug.body(@sprite.bot)
-    end
+    @game.debug.body(@sprite.bot)
   end
-end
+end 

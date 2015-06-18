@@ -48,40 +48,22 @@ end
 
 class Game
   def initialize
-    preload
-    create
-    update
-    render
-    
-    Phaser::Game.new(width: 800, height: 600, renderer: Phaser::CANVAS, parent: "example", state: state, transparent: false, antialias: true, physics: nil)
+    game  = Phaser::Game.new(width: 800, height: 600, renderer: Phaser::CANVAS, parent: "example")
+    state = MainState.new(game)
+    game.state.add(:main, state, true)
+  end
+end
+
+class MainState < Phaser::State
+  def initialize(game)
+    @sprite = Sprite.new(game)
   end
   
-  def state
-    @state ||= Phaser::State.new
-  end
+  methods = [:preload, :create, :update, :render]
   
-  def preload
-    state.preload do |game|
-      @sprite = Sprite.new(game)
-      @sprite.preload
-    end
-  end
-  
-  def create
-    state.create do |game|
-      @sprite.create
-    end
-  end
-  
-  def update
-    state.update do |game|
-      @sprite.update
-    end
-  end
-  
-  def render
-    state.render do |game|
-      @sprite.render
+  methods.each do |method|
+    define_method(method) do
+      @sprite.send method
     end
   end
 end

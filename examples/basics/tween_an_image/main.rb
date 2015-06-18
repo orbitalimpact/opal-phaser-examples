@@ -23,31 +23,23 @@ end
 
 class Game
   def initialize
-    preload
-    create_game
-    
-    Phaser::Game.new(width: 800, height: 600, renderer: Phaser::AUTO, parent: "example", state: state, transparent: false, antialias: true, physics: nil)
+    game  = Phaser::Game.new(width: 800, height: 600, renderer: Phaser::AUTO, parent: "example")
+    state = MainState.new(game)
+    game.state.add(:main, state, true)
+  end
+end
+
+class MainState < Phaser::State
+  def initialize(game)
+    @game = game
   end
   
   def preload
-    state.preload do |game|
-      initialize_entities(game)
-      
-      @image.preload
-    end
-  end
-  
-  def create_game
-    state.create do
-      @image.create
-    end
-  end
-  
-  def state
-    @state ||= Phaser::State.new
-  end
-  
-  def initialize_entities(game)
     @image = Image.new(game)
+    @image.preload
+  end
+  
+  def create
+    @image.create
   end
 end

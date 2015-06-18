@@ -35,33 +35,26 @@ end
 
 class Game
   def initialize
-    preload
-    create
-    update
-    
-    Phaser::Game.new(width: 800, height: 600, renderer: Phaser::AUTO, parent: "example", state: state, transparent: false, antialias: true, physics: nil)
+    game  = Phaser::Game.new(width: 800, height: 600, renderer: Phaser::AUTO, parent: "example")
+    state = MainState.new(game)
+    game.state.add(:main, state, true)
   end
-  
-  def state
-    @state ||= Phaser::State.new
+end
+
+class MainState < Phaser::State
+  def initialize(game)
+    @bot = Bot.new(game)
   end
   
   def preload
-    state.preload do |game|
-      @bot = Bot.new(game)
-      @bot.preload
-    end
+    @bot.preload
   end
   
   def create
-    state.create do |game|
-      @bot.create
-    end
+    @bot.create
   end
   
   def update
-    state.update do |game|
-      @bot.update
-    end
+    @bot.update
   end
 end
