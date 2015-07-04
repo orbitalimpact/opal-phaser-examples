@@ -42,3 +42,5 @@ class MainState < Phaser::State
     @image.create
   end
 end
+
+Game.new

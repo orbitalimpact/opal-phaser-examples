@@ -76,3 +76,5 @@ class MainState < Phaser::State
     @sea_creatures.create
   end
 end
+
+Game.new

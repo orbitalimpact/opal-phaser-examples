@@ -68,3 +68,5 @@ class MainState < Phaser::State
     @logo.render
   end
 end
+
+Game.new

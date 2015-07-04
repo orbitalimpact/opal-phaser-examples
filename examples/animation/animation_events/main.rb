@@ -100,3 +100,5 @@ class MainState < Phaser::State
     end
   end
 end
+
+Game.new

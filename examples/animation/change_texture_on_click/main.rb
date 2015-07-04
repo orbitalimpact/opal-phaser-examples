@@ -68,3 +68,5 @@ class MainState < Phaser::State
     @game.debug.body(@sprite.bot)
   end
 end 
+
+Game.new

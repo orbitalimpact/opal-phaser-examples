@@ -44,3 +44,5 @@ class MainState < Phaser::State
     @bot.create
   end
 end
+
+Game.new

@@ -63,3 +63,5 @@ class MainState < Phaser::State
     @sprite.create
   end
 end
+
+Game.new

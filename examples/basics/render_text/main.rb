@@ -32,3 +32,5 @@ class MainState < Phaser::State
     @text.create
   end
 end
+
+Game.new

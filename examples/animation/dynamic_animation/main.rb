@@ -62,3 +62,5 @@ class MainState < Phaser::State
     @orb.create
   end
 end
+
+Game.new

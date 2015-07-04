@@ -72,3 +72,5 @@ class MainState < Phaser::State
     call_state_method :create
   end
 end
+
+Game.new
