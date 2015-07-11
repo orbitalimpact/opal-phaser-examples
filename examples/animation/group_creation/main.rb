@@ -1,6 +1,5 @@
 require 'opal'
 require 'opal-phaser'
-require 'pp'
 
 class SeaCreatures
   def initialize(game)
