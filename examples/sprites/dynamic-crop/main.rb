@@ -38,3 +38,5 @@ class Game
     game.state.add(:main, state, true)
   end
 end
+
+Game.new
