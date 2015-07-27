@@ -1,6 +1,5 @@
 require 'opal'
 require 'opal-phaser'
-require 'pp'
 
 class AlphaMask < Phaser::State
   def preload
