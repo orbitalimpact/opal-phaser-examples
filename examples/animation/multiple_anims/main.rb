@@ -48,7 +48,7 @@ class MainState < Phaser::State
     @sprites               = Sprites.new(game)
     
     @game                  = game
-    @sprites_frames = []
+    @sprites_frames        = []
     
     @frame_generator_data  = {"blue_jellyfish_frames" => ["blueJellyfish", 32], "crab_frames" => ["crab1", 25], "green_jellyfish_frames" => ["greenJellyfish", 39], "octopus_frames" => ["octopus", 24], "purple_fish_frames" => ["purpleFish", 20], "seahorse_frames" => ["seahorse", 5], "stingray_frames" => ["stingray", 23]}
     @sprite_generator_data = {"blue_jellyfish" => [670, 20], "crab" => [550, 480], "green_jellyfish" => [330, 100], "octopus" => [160, 400], "purple_fish" => [800, 413], "seahorse" => [491, 40], "stingray" => [80, 190]}
