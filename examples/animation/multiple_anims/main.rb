@@ -96,7 +96,7 @@ class MainState < Phaser::State
     @tween_generator_data.each do |name, tween_data|
       current_sprite = instance_variable_get("@#{name}")
       
-      @game.add.tween(current_sprite).to(properties: tween_data[0], duration: tween_data[1], ease: Phaser::Easing::Quadratic.InOut, auto_start: true, delay: 0, repeat: 1000, yoyo: tween_data[2])
+      @game.add.tween(current_sprite).to(properties: tween_data[0], duration: tween_data[1], ease: Phaser::Easing::Quadratic.InOut, auto_start: true, repeat: 1000, yoyo: tween_data[2])
     end
   end
 end
